@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UtilityConsumptionDaily",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "meter_id",
+    "date",
+    "consumption_kwh",
+    "customer_type",
+    "region_id",
+    "data_source"
+  ],
+  "properties": {
+    "meter_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "region_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Coarse region identifier (e.g., city/zone/feeder area)."
+    },
+    "customer_type": {
+      "type": "string",
+      "enum": ["residential", "commercial", "industrial", "agri"]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "consumption_kwh": {
+      "type": "number",
+      "minimum": 0
+    },
+    "temperature_c": {
+      "type": ["number", "null"]
+    },
+    "is_holiday": {
+      "type": ["boolean", "null"]
+    },
+    "data_source": {
+      "type": "string",
+      "enum": ["synthetic"]
+    },
+    "generated_anomaly": {
+      "type": ["boolean", "null"],
+      "description": "Only present for synthetic datasets to mark injected anomalies."
+    }
+  }
+}
