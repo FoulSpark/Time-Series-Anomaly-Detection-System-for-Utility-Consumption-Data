@@ -1,6 +1,9 @@
 import numpy as np 
 import pandas as pd
-from statsmodels.tsa.seasonal import STL
+try:
+    from statsmodels.tsa.seasonal import STL
+except ModuleNotFoundError:  
+    STL = None
 
 
 def robust_zscore_mad(x:pd.Series)  -> pd.Series:
@@ -26,6 +29,12 @@ def stl_residual_detector(
 
     threshold=3.5 is a common robust threshold (analogous to ~3 std dev).
     """
+
+    if STL is None:
+        raise ModuleNotFoundError(
+            "statsmodels is required for STL residual detection. "
+            "Install it with: pip install statsmodels"
+        )
 
     df = df.sort_values(["meter_id","date"]).copy()
     
