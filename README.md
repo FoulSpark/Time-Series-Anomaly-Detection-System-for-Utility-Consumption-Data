@@ -89,6 +89,20 @@ python run_validate_input.py --input my_data.csv
 ```
 python run_pipeline.py --input my_data.csv
 ```
+### 4. Run the streamlit app
+```
+streamlit run streamlit_app.py
+```
+## Open in browser
+ - Streamlit will print a URL in the terminal (usually):
+ - http://localhost:8501
+
+Notes
+
+- You can use the included sample dataset:
+- data/Raw/consumption_daily.csv
+- Hybrid + Incident steps may require existing artifacts in:
+- data/Processed/
 ## Outputs
 
 All pipeline outputs are written to:
